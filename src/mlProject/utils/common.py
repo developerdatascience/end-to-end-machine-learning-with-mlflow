@@ -53,6 +53,20 @@ def load_json(path: Path, data: dict):
     logger.info(f"json file saved at: {path}")
 
 
+
+@ensure_annotations
+def create_directories(path_to_directories: list, verbose=True):
+    """Create list of directories
+
+    Args:
+        path_to_directories (list): list of path of directories
+        verbose (bool, optional): ignore if multiple directories is to be created. Defaults to false.
+    """
+    for path in path_to_directories:
+        os.makedirs(path, exist_ok=True)
+        if verbose:
+            logger.info(f"Created directories at: {path}")
+
 @ensure_annotations
 def save_bin(data: Any, path: Path):
     """
