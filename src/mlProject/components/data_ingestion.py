@@ -1,42 +1,36 @@
-from dataclasses import dataclass
 from pathlib import Path
 import os
-import urllib.request as requests
+import urllib.request as request
 import zipfile
 
-from mlProject.constants import *
-from mlProject.utils.common import create_directories, read_yaml
 from mlProject import logger
 from mlProject.utils.common import get_size
+from mlProject.entity.config_entity import (DataIngestionConfig)
 
-
-@dataclass(frozen=True)
-class DataIngestionConfig:
-    root_dir: str
-    source_URL: str
-    local_data_file: Path
-    unzip_dir: Path
-
-
-class ConfigurationManager:
-    def __init__(self, 
-                 config_filepath: CONFIG_FILE_PATH,
-                 params_filepath: PARAMS_FILE_PATH,
-                 schema_filepath: SCHEMA_FILE_PATH) ->None:
-
-        self.config = read_yaml(config_filepath)
-        self.params = read_yaml(params_filepath)
-        self.schema = read_yaml(schema_filepath)
+class DataIngestion:
+    def __init__(self, config: DataIngestionConfig) -> None:
+        self.config = config
 
     
-    def get_ingestion_data_config(self) ->DataIngestionConfig:
-        config = self.config.data_ingestion
+    def download_file(self):
+        if not os.path.exists(self.config.local_data_file):
+            filename, headers = request.urlretrieve(
+                url = self.config.source_URL,
+                filename = self.config.local_data_file
+            )
+            logger.info(f"{filename} download! with following info: \n{headers}")
+        else:
+            logger.info(f"File already exists of size: {get_size(Path(self.config.local_data_file))}")
+    
 
-        create_directories([config.root_dir])
+    def extract_file(self):
+        """
+        zip_file_path: str
+        Extracts the zip file into the data directory
+        Function returns None
+        """
+        unzip_path = self.config.unzip_dir
+        os.makedirs(unzip_path, exist_ok=True)
 
-        return DataIngestionConfig(
-            root_dir=config.root_dir,
-            source_URL=config.source_URL,
-            local_data_file=config.local_data_file,
-            unzip_dir=config.unzip_dir
-        )
+        with zipfile.ZipFile(self.config.local_data_file, "r") as zip_ref:
+            zip_ref.extractall(unzip_path)
