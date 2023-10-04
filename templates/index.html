@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Quality</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href=""><img src="{{ url_for('static', filename='images/logo.png')}}" alt="The Wine Company"></a>
+        </div>
+        <div class="nav-items">
+            <ul>
+                <li class="hover-links"><a href="#">Home</a></li>
+                <li class="hover-links"><a href="#">Customer</a></li>
+                <li class="hover-links"><a href="#">Products</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="form-container">
+            <h3 class="title">Please Fill The Information </h3>
+            <form action="/predict" method="post">
+                <div class="input-details">
+                    <div class="input-box">
+                        <span class="details">Fixed Acidity</span>
+                        <input type="text" name="fixed_acidity" id="fixed_acidity" placeholder="Fixed Acidity" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Volatile Acidity</span>
+                        <input type="text" name="volatile_acidity" id="volatile_acidity" placeholder="Volatile Acidity" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Citric Acid</span>
+                        <input type="text" name="citric_acid" id="citric_acid" placeholder="Citric Acid" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Residual Sugar</span>
+                        <input type="text" name="residual_sugar" id="residual_sugar" placeholder="Residual Sugar" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Chlorides</span>
+                        <input type="text" name="chlorides" id="chlorides" placeholder="Chlorides" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Free Sulfur Dioxide:</span>
+                        <input type="text" name="free_sulfur_dioxide" id="free_sulfur_dioxide" placeholder="Free Sulphur Dioxide" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Total Sulfur Dioxide</span>
+                        <input type="text" name="total_sulfur_dioxide" id="total_sulfur_dioxide" placeholder="Total Sulphur Dioxide" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Density</span>
+                        <input type="text" name="density" id="density" placeholder="Density" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">pH</span>
+                        <input type="text" name="pH" id="pH" placeholder="pH" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Sulphates</span>
+                        <input type="text" name="sulphates" id="sulphates" placeholder="Sulphates" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Alcohol</span>
+                        <input type="text" name="alcohol" id="alcohol" placeholder="Alcohol" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Predict">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
