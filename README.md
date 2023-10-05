@@ -34,3 +34,8 @@ python script.py
 export MLFLOW_TRACKING_URI=https://dagshub.com/developerdatascience/end-to-end-machine-learning-with-mlflow.mlflow
 export MLFLOW_TRACKING_USERNAME=developerdatascience
 export MLFLOW_TRACKING_PASSWORD=3f1565218d6ec2d42985b700ffecee09de158b93
+
+
+
+# Creating an Elastic Container Repository URI
+417126157572.dkr.ecr.us-east-1.amazonaws.com/mlproj

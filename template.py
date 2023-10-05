@@ -25,7 +25,7 @@ list_of_files = [
     "schema.yaml",
     "main.py",
     "app.py",
-    "Dockerfile.py",
+    "Dockerfile",
     "requirements.txt",
     "setup.py",
     "research/trials.ipynb",
